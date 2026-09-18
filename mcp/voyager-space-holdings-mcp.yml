@@ -1,0 +1,95 @@
+generated: '2026-09-18'
+method: probed
+status: published
+source: https://voyagertechnologies.com/wp-json/mcp
+summary: >-
+  Voyager Technologies' corporate WordPress site exposes two live Model Context Protocol servers
+  under the `mcp` REST namespace, produced by the WordPress MCP adapter and guarded by an OAuth 2.1
+  authorization server the same host advertises through RFC 8414 / RFC 9728 metadata. This is a
+  site-CMS surface — the company is a defense and space hardware manufacturer and publishes no
+  product API, developer program or documented tool set. Both servers were probed anonymously on
+  2026-09-18 and both returned HTTP 401, so the live tool list could not be enumerated. No tools are
+  recorded because none were observed; nothing is inferred.
+servers:
+- name: mcp-oauth-server
+  transport: http
+  url: https://voyagertechnologies.com/wp-json/mcp/mcp-oauth-server
+  methods:
+  - POST
+  - GET
+  - DELETE
+  auth:
+    type: oauth2
+    scheme: Bearer
+    scopes:
+    - mcp
+    authorization_server: https://voyagertechnologies.com
+    authorization_server_metadata: https://voyagertechnologies.com/.well-known/oauth-authorization-server
+    protected_resource_metadata: https://voyagertechnologies.com/.well-known/oauth-protected-resource
+    authorization_endpoint: https://voyagertechnologies.com/oauth/authorize
+    token_endpoint: https://voyagertechnologies.com/oauth/token
+    revocation_endpoint: https://voyagertechnologies.com/oauth/revoke
+    pkce: S256
+    client_registration: client_id_metadata_document
+  probe:
+    method: POST
+    body: '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+    http_status: 401
+    body_observed: '{"code":"mcp_unauthorized","message":"MCP authentication required.","data":{"status":401}}'
+    www_authenticate: Bearer realm="https://voyagertechnologies.com", resource_metadata="https://voyagertechnologies.com/.well-known/oauth-protected-resource"
+    note: >-
+      Correct RFC 9728 challenge behaviour — the 401 names the protected-resource metadata
+      document. The live tool set requires an authenticated tools/list call; it is not published
+      anonymously.
+- name: mcp-adapter-default-server
+  transport: http
+  url: https://voyagertechnologies.com/wp-json/mcp/mcp-adapter-default-server
+  methods:
+  - POST
+  - GET
+  - DELETE
+  auth:
+    type: wordpress-capability
+    note: Gated by WordPress capability checks rather than the OAuth challenge.
+  probe:
+    method: POST
+    body: '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+    http_status: 401
+    body_observed: '{"code":"rest_forbidden","message":"Sorry, you are not allowed to do that.","data":{"status":401}}'
+tools: []
+tools_note: >-
+  Empty by design. tools/list is auth-gated on both servers, the site publishes no llms.txt and no
+  tool documentation, and the WordPress Abilities API registry
+  (/wp-json/wp-abilities/v1/abilities), which is what the MCP adapter projects into tools, also
+  returned HTTP 401 anonymously. Enumerating the tool set requires authenticated introspection.
+  Deriving a speculative tool list from the WordPress REST surface would misrepresent what this
+  server exposes.
+related:
+  abilities_registry:
+    url: https://voyagertechnologies.com/wp-json/wp-abilities/v1/abilities
+    http_status: 401
+    note: WordPress Abilities API (wp-abilities/v1) — the named-ability registry the MCP adapter binds tools to.
+x-evidence:
+  fetched: '2026-09-18'
+  namespace_discovery:
+    url: https://voyagertechnologies.com/wp-json/mcp
+    http_status: 200
+    content_type: application/json
+  routes_observed:
+  - /mcp
+  - /mcp/mcp-oauth-server
+  - /mcp/mcp-adapter-default-server
+  note: >-
+    The bare-UA curl default is answered by a Cloudflare 403 challenge page on /wp-json/mcp; a
+    browser User-Agent reaches the origin. Recorded as an edge policy, not a miss.
+deployment:
+  mode: remote
+  endpoint: https://voyagertechnologies.com/wp-json/mcp/mcp-oauth-server
+  auth: oauth
+  verified: probed
+  probe: gated
+  checked: '2026-09-18'
+  scope: cms-platform
+  note: >-
+    Reachable by an MCP client today, but only after an OAuth 2.1 authorization-code + PKCE flow
+    against the WordPress site; there is no self-serve credential path published for the public.

@@ -1,17 +1,40 @@
 aid: voyager-space-holdings
-name: Voyager
-description: 'Voyager is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+name: Voyager Technologies
+description: >-
+  Voyager Technologies, Inc. (NYSE: VOYG), formerly Voyager Space Holdings, is a Denver-based
+  defense and space technology company that listed on the New York Stock Exchange in June 2025.
+  It delivers domestic end-to-end propulsion and energetics, spectrum-dominance and C4ISR
+  electronics, science and space-exploration hardware, mission management and lunar systems, and
+  is a partner in the Starlab commercial space station. Since 2019 it has acquired twelve
+  companies, including Nanoracks (commercial ISS payload services), ZIN Technologies, Space Micro,
+  Valley Tech Systems, Altius Space Machines, ExoTerra, Estes Energetics and Astrobotic. Voyager
+  Space rebranded to Voyager Technologies in January 2025; voyagerspace.com now redirects to
+  voyagertechnologies.com. The company publishes no developer program, public API, SDK or
+  machine-readable contract; the only machine surface on its domain is the WordPress MCP adapter
+  guarding the corporate CMS.
 url: https://raw.githubusercontent.com/api-evangelist/voyager-space-holdings/refs/heads/main/apis.yml
+image: https://voyagertechnologies.com/wp-content/uploads/2026/05/Voyager-Technologies-OG-Image.png
 x-type: company
 x-source: harvest:secondary-market
 x-tier: stub
 x-tier-reason: harvest
+x-former-names:
+- Voyager Space Holdings, Inc.
+- Voyager Space
+x-ticker: NYSE:VOYG
 specificationVersion: '0.20'
 created: '2026-09-18'
 modified: '2026-09-18'
 tags:
 - Company
+- Space
+- Defense
+- Aerospace
+- Propulsion
+- Satellites
+- Lunar
+- Space Stations
+- Public Company
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -20,4 +43,69 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
+  url: https://voyagertechnologies.com
+- type: About
+  url: https://voyagertechnologies.com/our-story/
+- type: Newsroom
+  url: https://voyagertechnologies.com/newsroom/
+- type: Blog
+  url: https://voyagertechnologies.com/insights/
+- type: BlogRSS
+  url: https://voyagertechnologies.com/press-releases/feed/
+- type: Careers
+  url: https://voyagertechnologies.com/company/join-us/
+- type: InvestorRelations
+  url: https://investors.voyagertechnologies.com/
+- type: Contact
+  url: https://voyagertechnologies.com/contact/
+- type: TermsOfService
+  url: https://voyagertechnologies.com/terms-of-use/
+- type: PrivacyPolicy
+  url: https://voyagertechnologies.com/privacy-policy-2/
+- type: LinkedIn
+  url: https://www.linkedin.com/company/voyagertechnologies-inc
+- type: X
+  url: https://x.com/voyagertech_
+- type: X-SecondaryMarket
   url: https://forgeglobal.com/voyager-space-holdings_stock/
+- type: MCPServer
+  url: mcp/voyager-space-holdings-mcp.yml
+- type: WellKnown
+  url: well-known/voyager-space-holdings-well-known.yml
+- type: ContentSignal
+  url: well-known/voyager-space-holdings-robots.txt
+- type: Authentication
+  url: authentication/voyager-space-holdings-authentication.yml
+- type: OAuthScopes
+  url: scopes/voyager-space-holdings-scopes.yml
+- type: Conformance
+  url: conformance/voyager-space-holdings-conformance.yml
+- type: LLMsTxt
+  url: llms/voyager-space-holdings-llms.txt
+- type: DomainSecurity
+  url: security/voyager-space-holdings-domain-security.yml
+x-enrichment:
+  date: '2026-09-18'
+  status: minimal
+  artifacts_added: 11
+  pass: local-v3
+x-coverage:
+  state: none
+  reason: not-a-software-company
+  detail: >-
+    Voyager Technologies is a defense and space hardware manufacturer (propulsion, energetics,
+    C4ISR electronics, lunar landers) whose site has no developer, docs or API section; the only
+    machine surface on voyagertechnologies.com is the WordPress CMS's MCP adapter, which answers
+    401 to anonymous tools/list.
+  evidence:
+  - url: https://voyagertechnologies.com/developers
+    status: 404
+  - url: https://voyagertechnologies.com/openapi.json
+    status: 404
+  - url: https://voyagertechnologies.com/.well-known/agent-card.json
+    status: 404
+  - url: https://voyagertechnologies.com/wp-json/mcp/mcp-oauth-server
+    status: 401
+  - url: https://voyagerspace.com/
+    status: 301
+  checked: '2026-09-18'

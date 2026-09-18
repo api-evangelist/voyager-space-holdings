@@ -1,0 +1,42 @@
+generated: '2026-09-18'
+method: probed
+source: https://voyagertechnologies.com/.well-known/oauth-authorization-server
+note: >-
+  Voyager Technologies publishes no product API, so there is no contract to read a domain standard
+  from and no compliance claim page to cite; every entry below is a protocol-level assertion read
+  from documents its own host served on 2026-09-18. The surface they describe is the WordPress MCP
+  adapter guarding the corporate CMS. REWARD-ONLY: no sector standard is asserted false here
+  because none applies to a defense-hardware company with no API.
+standards:
+- id: oauth2
+  conforms: true
+  evidence: https://voyagertechnologies.com/.well-known/oauth-authorization-server
+  note: OAuth 2.1-style authorization_code + refresh_token grants, response_types [code].
+- id: rfc8414
+  conforms: true
+  evidence: https://voyagertechnologies.com/.well-known/oauth-authorization-server
+  note: Authorization-server metadata document served with issuer, authorization/token/revocation endpoints, grants, scopes and PKCE methods.
+- id: rfc9728
+  conforms: true
+  evidence: https://voyagertechnologies.com/.well-known/oauth-protected-resource
+  note: Protected-resource metadata naming the resource, authorization_servers, bearer_methods_supported and scopes_supported; the resource's 401 carries a WWW-Authenticate resource_metadata pointer.
+- id: pkce
+  conforms: true
+  evidence: https://voyagertechnologies.com/.well-known/oauth-authorization-server
+  note: code_challenge_methods_supported [S256].
+- id: rfc7009
+  conforms: true
+  evidence: https://voyagertechnologies.com/.well-known/oauth-authorization-server
+  note: revocation_endpoint advertised at https://voyagertechnologies.com/oauth/revoke.
+- id: mcp
+  conforms: true
+  evidence: https://voyagertechnologies.com/wp-json/mcp/mcp-oauth-server
+  note: JSON-RPC MCP endpoint answering tools/list with a spec-shaped 401 challenge (auth-gated; tool set not observed).
+- id: oidc
+  conforms: false
+  evidence: https://voyagertechnologies.com/.well-known/openid-configuration
+  note: HTTP 404 — no OpenID Connect discovery document.
+- id: rfc9116
+  conforms: false
+  evidence: https://voyagertechnologies.com/.well-known/security.txt
+  note: HTTP 404 — no security.txt.

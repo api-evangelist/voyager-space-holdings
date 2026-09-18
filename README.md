@@ -1,4 +1,4 @@
-# Voyager
+# Voyager Technologies
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,5 +64,14 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Voyager is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://forgeglobal.com/voyager-space-holdings_stock/
+Voyager Technologies, Inc. (NYSE: VOYG) — formerly Voyager Space Holdings — is a Denver-based defense and space technology company: propulsion and energetics, spectrum-dominance and C4ISR electronics, science and space-exploration hardware, mission management, lunar systems, and a partner in the Starlab commercial space station. Voyager Space rebranded to Voyager Technologies in January 2025 and listed on the NYSE in June 2025; voyagerspace.com now redirects to voyagertechnologies.com.
+
+- https://voyagertechnologies.com
+
+## What this profile found (2026-09-18)
+
+The company publishes **no developer program, public API, SDK or machine-readable contract**. Contract discovery (openapi/swagger on the apex, the pre-rebrand domain and the investor host; agent-card on every host; llms.txt; apis.json) missed everywhere, and no GitHub organization carries its code (the `VoyagerTechnologies`, `Voyagerspace` and `nanoracks` GitHub accounts are empty user accounts with zero repositories).
+
+The only machine surface on its domain is the **WordPress MCP adapter** that ships with the corporate CMS: two MCP servers under `/wp-json/mcp/`, guarded by an OAuth 2.1 authorization server the host advertises through real RFC 8414 and RFC 9728 discovery documents. Anonymous `tools/list` returns HTTP 401 with a correct `WWW-Authenticate` challenge, so the tool set is not published. These are recorded in `well-known/`, `mcp/`, `authentication/`, `scopes/` and `conformance/` for what they are — a site-administration surface, not a product API.
+
+`investors.voyagertechnologies.com` answers HTTP 200 "Invalid key" for every `/.well-known/*` path including a negative control, so nothing on that host counts.

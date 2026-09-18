@@ -1,0 +1,184 @@
+generated: '2026-09-18'
+method: searched
+source: https://voyagertechnologies.com/.well-known/
+note: >-
+  Voyager Technologies is a defense and space hardware company with no developer program or
+  product API. The two documents recorded below are real, anonymous HTTP 200 JSON responses served
+  by the corporate WordPress site (WP Engine behind Cloudflare) and belong to the WordPress MCP
+  adapter — they describe the OAuth 2.1 authorization server that guards the site's CMS Model
+  Context Protocol endpoint (/wp-json/mcp/mcp-oauth-server), not a product API. Both bare paths
+  answer 301 to a trailing-slash form; the status recorded is the document's final response. The
+  apex host returned a real 404 (28 KB WordPress not-found page) for every other named path and for
+  the negative-control path, so the hits are not a catch-all artefact. www.voyagertechnologies.com
+  301s every path to the apex and is not indexed separately. voyagerspace.com, the pre-rebrand
+  domain, 301s its root to voyagertechnologies.com and 404s every well-known path itself.
+  investors.voyagertechnologies.com (a hosted investor-relations platform) answers HTTP 200 with the
+  11-byte body "Invalid key" for EVERY /.well-known/* path including the negative control, so it is
+  a path-echoing catch-all and none of its 200s count. Every status was observed live on 2026-09-18.
+x-evidence:
+  fetched: '2026-09-18'
+  user_agent: browser
+  probe_hosts:
+  - voyagertechnologies.com
+  - www.voyagertechnologies.com
+  - voyagerspace.com
+  - investors.voyagertechnologies.com
+  negative_control: /.well-known/voyager-space-holdings-negative-control-hn8iw783.json
+other:
+- path: /robots.txt
+  status: 200
+  file: voyager-space-holdings-robots.txt
+  kind: ContentSignal
+  note: >-
+    Captured verbatim. Explicitly ALLOWS CCBot, GPTBot, Google-Extended and ClaudeBot (empty
+    Disallow), disallows /wp-admin/ and add-to-cart query strings for everyone, and names the
+    sitemap index at /sitemaps.xml. No Content-Signal directive.
+- path: /wp-json/
+  status: 200
+  kind: RESTDiscovery
+  note: >-
+    WordPress REST route-discovery document (415 KB) listing 14 namespaces including wp/v2,
+    wp-abilities/v1, greenhouse/v1, contact-form-7/v1 and mcp. This is the CMS platform's own
+    API, not a Voyager product API; it was not harvested into openapi/ on purpose.
+hosts:
+- host: https://voyagertechnologies.com
+  path_echo_control: passed
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: voyager-space-holdings-oauth-authorization-server.json
+    content_type: application/json
+    note: >-
+      RFC 8414 metadata. issuer https://voyagertechnologies.com; authorization_code + refresh_token
+      grants; PKCE S256; a single scope `mcp`; token_endpoint_auth_methods_supported ["none"]
+      (public client); client_id_metadata_document_supported true. Served at the trailing-slash
+      path after a 301 from the bare path.
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: voyager-space-holdings-oauth-protected-resource.json
+    content_type: application/json
+    note: >-
+      RFC 9728 metadata naming the protected resource
+      https://voyagertechnologies.com/wp-json/mcp/mcp-oauth-server, authorization_servers
+      [https://voyagertechnologies.com], bearer_methods_supported ["header"], scope `mcp`.
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/api-catalog.json
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /security.txt
+    status: 404
+- host: https://voyagerspace.com
+  path_echo_control: passed
+  note: Pre-rebrand domain; root 301s to https://voyagertechnologies.com/. Every well-known path 404s here.
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+- host: https://investors.voyagertechnologies.com
+  path_echo_control: failed
+  hit_count: 0
+  soft_404_control:
+    path: /.well-known/voyager-space-holdings-negative-control-hn8iw783.json
+    status: 200
+    bytes: 11
+    body: Invalid key
+  note: >-
+    Hosted investor-relations platform. Answers HTTP 200 text/html with the 11-byte body
+    "Invalid key" for every /.well-known/* path probed, including one that cannot exist, so every
+    200 on this host is discarded. Its root answers a Cloudflare JavaScript challenge (403).
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    counted: false
+    real_document: false
+    note: 11-byte "Invalid key" catch-all body; not a document.
+  - path: /.well-known/openid-configuration
+    status: 301
+    counted: false
+    real_document: false
+  - path: /.well-known/oauth-authorization-server
+    status: 301
+    counted: false
+    real_document: false
+  - path: /.well-known/oauth-protected-resource
+    status: 301
+    counted: false
+    real_document: false
+  - path: /.well-known/api-catalog.json
+    status: 200
+    counted: false
+    real_document: false
+    note: catch-all body
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    counted: false
+    real_document: false
+    note: catch-all body
+  - path: /.well-known/apis.json
+    status: 200
+    counted: false
+    real_document: false
+    note: catch-all body
+  - path: /.well-known/agent-card.json
+    status: 200
+    counted: false
+    real_document: false
+    note: catch-all body
+  - path: /.well-known/agent.json
+    status: 200
+    counted: false
+    real_document: false
+    note: catch-all body
+  - path: /apis.json
+    status: 404
+  - path: /llms.txt
+    status: 404

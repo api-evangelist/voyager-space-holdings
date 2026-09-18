@@ -1,0 +1,20 @@
+generated: '2026-09-18'
+method: searched
+source: https://voyagertechnologies.com/.well-known/oauth-authorization-server
+docs: null
+note: >-
+  Read verbatim from scopes_supported in the provider's RFC 8414 metadata and confirmed by the RFC
+  9728 protected-resource document (both HTTP 200, 2026-09-18). The single scope belongs to the
+  WordPress MCP adapter's authorization server; there is no product API, no scopes reference page
+  and no finer-grained permission model published.
+scheme: mcpOAuth2
+flows:
+- authorizationCode
+scope_count: 1
+scopes:
+- name: mcp
+  description: Access the site's Model Context Protocol server (https://voyagertechnologies.com/wp-json/mcp/mcp-oauth-server).
+  resource: https://voyagertechnologies.com/wp-json/mcp/mcp-oauth-server
+  sources:
+  - https://voyagertechnologies.com/.well-known/oauth-authorization-server
+  - https://voyagertechnologies.com/.well-known/oauth-protected-resource

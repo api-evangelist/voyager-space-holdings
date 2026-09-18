@@ -1,0 +1,54 @@
+generated: '2026-09-18'
+method: searched
+source: https://voyagertechnologies.com/.well-known/oauth-authorization-server
+docs: null
+note: >-
+  No OpenAPI exists to derive from, so this profile is read directly from the two OAuth discovery
+  documents the provider's host serves (RFC 8414 and RFC 9728, both HTTP 200 on 2026-09-18) and
+  from the WWW-Authenticate challenge observed on the MCP endpoint. It describes the WordPress MCP
+  adapter's authorization server, the only authenticated machine surface on the domain; the
+  company publishes no product API, no API keys and no developer authentication documentation.
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+  pkce: required
+  public_client: true
+schemes:
+- name: mcpOAuth2
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://voyagertechnologies.com/oauth/authorize
+    tokenUrl: https://voyagertechnologies.com/oauth/token
+    refreshUrl: https://voyagertechnologies.com/oauth/token
+    scopes:
+      mcp: Access the site's Model Context Protocol server (the only scope advertised in scopes_supported).
+  description: >-
+    OAuth 2.1 authorization-code + PKCE (S256), as advertised by the provider's RFC 8414 metadata.
+    grant_types_supported [authorization_code, refresh_token]; response_types_supported [code];
+    token_endpoint_auth_methods_supported ["none"] (public client);
+    client_id_metadata_document_supported true (clients identify with a hosted metadata URL rather
+    than a pre-registered client_id); authorization_response_iss_parameter_supported true; a
+    revocation endpoint at /oauth/revoke. The RFC 9728 document names the protected resource
+    https://voyagertechnologies.com/wp-json/mcp/mcp-oauth-server with bearer_methods_supported
+    ["header"].
+  sources:
+  - well-known/voyager-space-holdings-oauth-authorization-server.json
+  - well-known/voyager-space-holdings-oauth-protected-resource.json
+  challenge:
+    observed_on: https://voyagertechnologies.com/wp-json/mcp/mcp-oauth-server
+    http_status: 401
+    www_authenticate: Bearer realm="https://voyagertechnologies.com", resource_metadata="https://voyagertechnologies.com/.well-known/oauth-protected-resource"
+- name: wpNonce
+  type: apiKey
+  in: header
+  parameter: X-WP-Nonce
+  description: >-
+    WordPress cookie-authentication nonce, advertised by the live server in its
+    Access-Control-Allow-Headers response header (Authorization, X-WP-Nonce, Content-Disposition,
+    Content-MD5, Content-Type). Only meaningful for a logged-in WordPress session; not a public
+    credential path.
+  sources:
+  - https://voyagertechnologies.com/wp-json/mcp/mcp-oauth-server
