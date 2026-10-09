@@ -93,3 +93,18 @@ deployment:
   note: >-
     Reachable by an MCP client today, but only after an OAuth 2.1 authorization-code + PKCE flow
     against the WordPress site; there is no self-serve credential path published for the public.
+rfc9728:
+  endpoint: https://voyagertechnologies.com/wp-json/mcp/mcp-oauth-server
+  metadata_url: https://voyagertechnologies.com/.well-known/oauth-protected-resource
+  discovered_via: WWW-Authenticate resource_metadata on an anonymous POST initialize
+  fetched: '2026-09-25'
+  http_status: 200
+  content_type: application/json
+  document:
+    resource: https://voyagertechnologies.com/wp-json/mcp/mcp-oauth-server
+    authorization_servers:
+    - https://voyagertechnologies.com
+    scopes_supported:
+    - mcp
+    bearer_methods_supported:
+    - header
