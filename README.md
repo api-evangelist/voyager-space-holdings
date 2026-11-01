@@ -64,14 +64,97 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Voyager Technologies, Inc. (NYSE: VOYG) — formerly Voyager Space Holdings — is a Denver-based defense and space technology company: propulsion and energetics, spectrum-dominance and C4ISR electronics, science and space-exploration hardware, mission management, lunar systems, and a partner in the Starlab commercial space station. Voyager Space rebranded to Voyager Technologies in January 2025 and listed on the NYSE in June 2025; voyagerspace.com now redirects to voyagertechnologies.com.
+Voyager Technologies, Inc. (NYSE: VOYG), formerly Voyager Space Holdings, is a Denver-based defense and space technology company that listed on the New York Stock Exchange in June 2025. It delivers domestic end-to-end propulsion and energetics, spectrum-dominance and C4ISR electronics, science and space-exploration hardware, mission management and lunar systems, and is a partner in the Starlab commercial space station. Since 2019 it has acquired twelve companies, including Nanoracks (commercial ISS payload services), ZIN Technologies, Space Micro, Valley Tech Systems, Altius Space Machines, ExoTerra, Estes Energetics and Astrobotic. Voyager Space rebranded to Voyager Technologies in January 2025; voyagerspace.com now redirects to voyagertechnologies.com. The company publishes no developer program, public API, SDK or machine-readable contract; the only machine surface on its domain is the WordPress MCP adapter guarding the corporate CMS.
 
-- https://voyagertechnologies.com
+**Areas:** Company · Space · Defense · Aerospace · Propulsion · Satellite · Lunar · Space Stations · Public Company
 
-## What this profile found (2026-09-18)
+## Voyager Technologies on APIs.io
 
-The company publishes **no developer program, public API, SDK or machine-readable contract**. Contract discovery (openapi/swagger on the apex, the pre-rebrand domain and the investor host; agent-card on every host; llms.txt; apis.json) missed everywhere, and no GitHub organization carries its code (the `VoyagerTechnologies`, `Voyagerspace` and `nanoracks` GitHub accounts are empty user accounts with zero repositories).
+Everything profiled for Voyager Technologies is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/voyager-space-holdings/](https://apis.io/providers/voyager-space-holdings/)** — or go straight to one of the APIs or properties below.
 
-The only machine surface on its domain is the **WordPress MCP adapter** that ships with the corporate CMS: two MCP servers under `/wp-json/mcp/`, guarded by an OAuth 2.1 authorization server the host advertises through real RFC 8414 and RFC 9728 discovery documents. Anonymous `tools/list` returns HTTP 401 with a correct `WWW-Authenticate` challenge, so the tool set is not published. These are recorded in `well-known/`, `mcp/`, `authentication/`, `scopes/` and `conformance/` for what they are — a site-administration surface, not a product API.
+### Published properties
 
-`investors.voyagertechnologies.com` answers HTTP 200 "Invalid key" for every `/.well-known/*` path including a negative control, so nothing on that host counts.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [voyager-space-holdings-mcp.yml](https://apis.io/servers/voyager-space-holdings/voyager-space-holdings-mcp-yml/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Voyager Space Holdings Authentication](https://apis.io/security/voyager-space-holdings/voyager-space-holdings-authentication/)
+- [Voyager Space Holdings Domain Security](https://apis.io/security/voyager-space-holdings/voyager-space-holdings-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Voyager Space Holdings Scopes](https://apis.io/scopes/voyager-space-holdings/voyager-space-holdings-scopes/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://voyagertechnologies.com)
+- [Blog](https://voyagertechnologies.com/insights/)
+- [Terms of service](https://voyagertechnologies.com/terms-of-use/)
+- [Privacy policy](https://voyagertechnologies.com/privacy-policy-2/)
+
+## API Evangelist rating
+
+**Kin Score 17.4** — emerging · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 52.5 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 14.3 |
+| Access clarity | 21.1 |
+
+**Agent readiness 18.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | platform (partial credit) |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | yes |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 34.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/voyager-space-holdings/](https://apis.io/providers/voyager-space-holdings/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Voyager Technologies: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/voyager-space-holdings/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
